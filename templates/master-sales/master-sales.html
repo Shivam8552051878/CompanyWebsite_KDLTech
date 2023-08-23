@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://www.singlegrain.com/wp-content/uploads/2019/03/SG-5-Powerful-Ways-to-Increase-Sales-by-Leveraging-Data-Effectively.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Master Sales</h1>
+            <span class="subheading">All the machine detail.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for sale in all_sales %}
+        <div class="post-preview">
+          <a href="{{ url_for('show_mastersales_single', mastersales_id=sale[0].id) }}">
+            <h2 class="post-title">
+              {{sale[0].company_name}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{sale[0].address}}
+            </h3>
+          </a>
+          <p class="post-meta">Contact person
+            {{sale[0].contact_name}}
+            on {{sale[0].date}}
+          </p>
+        </div>
+        {% endfor %}
+        {% if current_user.id == 1: %}
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{url_for('create_mastersales')}}">Add New Customer</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}

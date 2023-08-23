@@ -1,0 +1,41 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.EBcmkS8G7fG8ygQxCZsy0AEyDM&pid=Api&P=0&h=180')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+
+                    <h1>Machine Service Detail</h1>
+                    <span class="subheading">Our service is best!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% for amc in amcs %}
+<div class="card">
+  <div class="card-header">
+      {{amc[0].which_service}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{amc[0].servicr_done_by}} on {{amc[0].date}}</h5>
+    <p class="card-text">{{amc[0].service_detail|safe }}</p>
+<!--    <a href="#" class="btn btn-primary">Go somewhere</a>-->
+  </div>
+</div>
+{% endfor %}
+
+{% include "footer.html" %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,71 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead"
+        style="background-image: url('https://tse3.mm.bing.net/th?id=OIP.6MrOaMWoXnfllEZXVRp8wAHaEA&pid=Api&P=0&h=180')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>AMC TAKEN</h1>
+                    <span class="subheading">All the AMC detail</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for amc in amcs %}
+            <div class="post-preview">
+                <a href="{{ url_for('show_amc_detail', amc_id=amc[0].id) }}">
+                    <h2 class="post-title">
+                        {{amc[0].master_sales_detail.company_name}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{amc[0].master_sales_detail.address}}
+                    </h3>
+                </a>
+                <p class="post-meta">AMC taken by
+                    {{amc[0].amc_taken}}
+                    on {{amc[0].date}}
+
+                </p>
+            </div>
+            {% endfor %}
+
+            <div class="post-preview">
+                <h2 class="post-title">
+                  COMPANY UNDER WARRANTY
+                </h2>
+            </div>
+
+            {%for under_warranty_machine in under_warrantymachine %}
+            <div class="post-preview">
+                <a href="{{ url_for('show_mastersales_single', mastersales_id=under_warranty_machine[0].id) }}">
+                    <h2 class="post-title">
+                        {{under_warranty_machine[0].company_name}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{under_warranty_machine[0].address}}
+                    </h3>
+                </a>
+                <p class="post-meta">Machine Buy
+                    on {{under_warranty_machine[0].date}}
+                </p>
+            </div>
+            {% endfor %}
+            <!--        &lt;!&ndash; New Post &ndash;&gt;-->
+            <!--        {% if current_user.id == 1: %}-->
+            <!--        <div class="clearfix">-->
+            <!--          <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>-->
+            <!--        </div>-->
+            <!--        {% endif %}-->
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

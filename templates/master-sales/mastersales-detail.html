@@ -1,0 +1,132 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+<!-- Page Header -->
+<!--https://tse2.mm.bing.net/th?id=OIP.h9fBj6gfSBFzHGnyZaYzyQHaD-&pid=Api&P=0&h=180-->
+<header class="masthead"
+        style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.h9fBj6gfSBFzHGnyZaYzyQHaD-&pid=Api&P=0&h=180">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>{{master_sale_detail.company_name}}</h1>
+                    <span class="subheading">{{master_sale_detail.address}}</span>
+                    <span class="subheading">{{master_sale_detail.gst_no}}</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--<div class="container text-center">-->
+<!--  <div class="row align-items-start">-->
+<!--    <div class="col">-->
+<!--      One of three columns-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      One of three columns-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      One of three columns-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="container text-start">
+    <div class="row align-items-start">
+        <div class="col-lg-6 col-md-10 mx-auto">
+            <div class="card">
+                <h1 class="card-header">Machine Detail</h1>
+                <div class="card-body">
+                    <h3 class="card-title">{{master_sale_detail.machine_serial_no}}</h3>
+                    <p class="card-text">Number of Machine: <b>{{ master_sale_detail.quantity }}</b></p>
+                    <p class="card-text">Machine Buy On: <b>{{ master_sale_detail.date }}</b></p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-6 col-md-10 mx-auto">
+            <div class="card">
+                <h1 class="card-header">Contact Detail</h1>
+                <div class="card-body">
+                    <h3 class="card-title">{{master_sale_detail.contact_name}}</h3>
+                    <p class="card-text">{{ master_sale_detail.contact_number }}</p>
+                    <p class="card-text">{{ master_sale_detail.email_id }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center ">
+        <div class="col-lg-12 col-md-10 mx-auto">
+
+            <div class="card">
+                <h1 class="card-header">AMC Detail <a class="btn btn-primary float-right"
+                                                      href="{{ url_for('create_amc_date', companyid = master_sale_detail.id) }}">Add
+                    AMC</a></h1>
+                {% for amc in master_sale_detail.amc_detail %}
+                <div class="card-body">
+                    <a href="{{ url_for('show_amc_detail', amc_id = amc.id) }}">
+                        <p class="card-title"><b>{{amc.amc_taken}}</b>   {{ amc.date }}     {{ amc.payment_way }} Status <b style="color:red">{{
+                            amc.payment_status }}</b>
+                        </p>
+                    </a>
+                    <a class="btn btn-primary" href="{{ url_for('create_amc_service_detail', amc_id = amc.id, companyid=master_sale_detail.id) }}">Add Service Detail</a>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!--<div class="d-grid gap-2 col-6 mx-auto">-->
+<!--    <button class="btn btn-primary" type="button">Button</button>-->
+<!--</div>-->
+<!--<a class="btn btn-primary"-->
+<!--   href="{{ url_for('create_amc_date', companyid = master_sale_detail.id) }}">Add-->
+<!--    AMC</a>-->
+
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-lg-8 col-md-10 mx-auto">-->
+<!--            {% for amc in master_sale_detail.amc_detail%}-->
+<!--            <div class="post-preview">-->
+<!--                <a href="{{ url_for('show_mastersales_single', mastersales_id=amc.id) }}">-->
+<!--                    <h2 class="post-title">-->
+<!--                        {{amc.amc_taken}} {{amc.date}}-->
+<!--                    </h2>-->
+<!--                    <h3 class="post-subtitle">-->
+<!--                        <b>{{amc.payment_way|upper}}</b> Payment Status:-<b style="color:red">{{amc.payment_status}}</b>-->
+<!--                    </h3>-->
+<!--                </a>-->
+
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--            {% if current_user.id == 1: %}-->
+<!--            <div class="clearfix">-->
+<!--                <a class="btn btn-primary float-right" href="{{url_for('create_mastersales')}}">Add New Customer</a>-->
+<!--            </div>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<h1>{{master_sale_detail.company_name}}</h1>-->
+<!--<h2>{{master_sale_detail.amc_detail.date}}</h2>.0-->
+<!--{% if current_user.id == 1: %}-->
+<!--        <div class="clearfix">-->
+<!--          <a class="btn btn-primary float-right" href="{{url_for('create_mastersales')}}">Add New Customer</a>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+{% include "footer.html" %}
+{% endblock %}
+
+
+
+
+
